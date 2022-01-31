@@ -1,8 +1,6 @@
 package ru.anton.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.anton.entity.IQuestion;
 import ru.anton.repository.IQuestionRepo;
 
@@ -10,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/iquestion")
+@CrossOrigin("http://localhost:8082/")
 public class IController {
     private final IQuestionRepo iQuestionRepo;
 
@@ -20,5 +19,10 @@ public class IController {
     @GetMapping
     public List<IQuestion> questions(){
         return iQuestionRepo.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public IQuestion getOne(@PathVariable("id") long id){
+        return iQuestionRepo.findById(id);
     }
 }
