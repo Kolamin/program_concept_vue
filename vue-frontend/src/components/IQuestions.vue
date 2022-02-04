@@ -1,32 +1,30 @@
 <template>
     <div>
-        <IQuestionOne v-for="iquestion in iquestions" :key="iquestion.id" :iquestion = "iquestion"/>
+        <IQuestionOne v-for="iquestion in iquestions" :key="iquestion.id"  :iquestion="iquestion"/>
 
     </div>
 </template>
 
 <script>
-    import EventService from '@/services/EventService.js';
-    import IQuestionOne from '@/components/IQuestionOne.vue';
+    import EventService from '../services/EventService.js'
+    import IQuestionOne from '../components/IQuestionOne.vue'
+
     export default {
-        components:{
-          IQuestionOne
+        components: {
+            IQuestionOne
         },
         name: "IQuestions",
         data() {
             return {
                 iquestions: []
             }
+
         },
-        methods: {
-            getIQuestions() {
-                EventService.getIQuestions().then((response) => {
-                    this.iquestions = response.data
-                })
-            }
-        },
-        created() {
-            this.getIQuestions()
+        created: function() {
+          EventService.getEvents().then(response =>{
+              this.iquestions = response.data
+            })
         }
+
     }
 </script>

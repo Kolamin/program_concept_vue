@@ -1,18 +1,17 @@
 <template>
-  <div>
-      <ul>
-          <li v-for="value in iquestion" :key="value.id">
-              {{ value.id }}
-          </li>
-      </ul>
-  </div>
+    <div>
+        <h3>{{ iquestion.id }}. {{iquestion.name}}</h3>
+        <ul v-for="value in iquestion.testOptions" :key="value.id">
+            <li>{{value}}</li>
+        </ul>
+    </div>
 </template>
 
 <script>
     export default {
-       props: {
-           iquestion: {}
-       }
+        props: {
+            iquestion: {},
+        }
     }
 </script>
 
