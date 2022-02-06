@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/iquestion")
-@CrossOrigin(origins = "http://localhost:8082/")
+@CrossOrigin(origins = "http://localhost:8080/")
 public class IController {
     private final IQuestionRepo iQuestionRepo;
 
