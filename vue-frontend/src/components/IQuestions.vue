@@ -1,7 +1,10 @@
 <template>
   <div>
-    <IQuestionOne :iquestion="iquestions[this.id]"/>
+    <IQuestionOne @toParent="handler" :iquestion="iquestions[this.id]"/>
     <button v-on:click="nextQuestion">Ответить</button>
+    <br>
+    <br>
+    <span>{{ checkedIQuestion }}</span>
   </div>
 </template>
 
@@ -17,16 +20,27 @@ export default {
   data() {
     return {
       iquestions: [],
-      id: 0
+      id: 0,
+      checkedIQuestion: []
     }
 
   },
   methods: {
     nextQuestion() {
-      if(this.id >= 181){
+      if (this.id >= 181) {
         this.id = -1
       }
-      this.id += 1;
+
+      this.id += 1
+
+      let elem = document.getElementsByTagName('input');
+      for (let i = 0; i < elem.length; i++) {
+        elem[i].checked = false
+      }
+    },
+    handler(value) {
+      this.checkedIQuestion = value
+      console.log(this.checkedIQuestion)
     }
   },
   created: function () {
